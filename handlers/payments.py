@@ -31,8 +31,8 @@ class Payment:
         self.bot = bot
         self.db_manger = DbManager(async_session)
         self.crypto = AioCryptoPay(token=os.getenv('CRYPTO_TOKEN'), network=Networks.MAIN_NET)
-        self.deposit_id = 'CgACAgIAAxkBAAMRaMKEaSr449VjG6axTFhl8FS8pEYAAmx_AAJ_RRhKFyeGzsTnuhI2BA'
-        self.menu_id = 'CgACAgIAAxkBAAMFaMKDp4R4ZNpd4G3rbPbvVfMAAbA0AAJvfwACf0UYSpntdLDLaMBZNgQ'
+        self.deposit_id = 'CgACAgIAAxkBAAIH7GjRo64029Jo4K1qJoTEqPsysskGAAJsfwACf0UYSjaww4363VsiNgQ'
+        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
 
 
     async def reg_handler(self):

@@ -77,7 +77,7 @@ def build_proxies_keyboard(page: int, total: int, proxy_id: int):
 
 
     builder.row(
-        InlineKeyboardButton(text="Продлить", callback_data=ProlongProxy(proxy_id=proxy_id).pack())
+        InlineKeyboardButton(text="Продлить", callback_data=ProlongProxy(proxy_id=proxy_id if proxy_id else 0).pack())
     )
 
     builder.row(

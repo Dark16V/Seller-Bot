@@ -7,6 +7,7 @@ class UploadFile(StatesGroup):
     price = State()
 
 class NumProx(StatesGroup):
+    tariff = State()
     type = State()
     country = State()
     await_accept = State()

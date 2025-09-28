@@ -62,10 +62,10 @@ class UserIBK():
             inline_keyboard=[
                 [
                     InlineKeyboardButton(text='Proxy 🛡️', callback_data='buy_proxy'),
-                    InlineKeyboardButton(text='VPN 🌐', callback_data='buy_vpn')
+                    InlineKeyboardButton(text='VPN 🛸', callback_data='buy_vpn')
                 ],
                 [
-                    InlineKeyboardButton(text='Servers 🖥️', callback_data='buy_servers'),
+                    InlineKeyboardButton(text='Servers 💻', callback_data='buy_servers'),
                 ],
                 [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='back_to_menu')
@@ -212,7 +212,7 @@ class UserIBK():
                     InlineKeyboardButton(text='Приобрести 🛒', callback_data='continue_vpn')
                 ],
                 [
-                    InlineKeyboardButton(text='Инструкции по использованию 💡', callback_data='instr')
+                    InlineKeyboardButton(text='Инструкция ℹ️', callback_data='instr')
                 ],
                 [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='buy')
@@ -327,12 +327,28 @@ class UserIBK():
         buttons = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
-                    InlineKeyboardButton(text='♦️ HTTPS', callback_data='http'),
-                    InlineKeyboardButton(text='♦️ SOCKS5', callback_data='socks')
+                    InlineKeyboardButton(text='🔗 HTTPS', callback_data='http'),
+                    InlineKeyboardButton(text='🔗 SOCKS5', callback_data='socks')
                     
                 ],
                 [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='buy_proxy')
+                ]
+            ]
+        )
+        return buttons
+    
+    @staticmethod
+    async def select_type_bt():
+        buttons = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text='🔗 HTTPS', callback_data='http'),
+                    InlineKeyboardButton(text='🔗 SOCKS5', callback_data='socks')
+                    
+                ],
+                [
+                    InlineKeyboardButton(text='⬅️ Назад', callback_data='cat_ipv4')
                 ]
             ]
         )
@@ -494,6 +510,24 @@ class UserIBK():
                 ],
                 [
                     InlineKeyboardButton(text='Проверить 🔍', callback_data='check_sub')
+                ]
+            ]
+        )
+        return button
+
+
+    @staticmethod
+    async def tariff():
+        button = InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text='⚡️STARTER+', callback_data='cheap')
+                ],
+                [
+                    InlineKeyboardButton(text='🍀PREMIUM', callback_data='vip')
+                ],
+                [
+                    InlineKeyboardButton(text='⬅️ Назад', callback_data='buy_proxy')
                 ]
             ]
         )

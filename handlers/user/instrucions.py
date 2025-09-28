@@ -14,9 +14,9 @@ class InstructionsClient():
     def __init__(self, dp, bot):
         self.dp = dp
         self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAMFaMKDp4R4ZNpd4G3rbPbvVfMAAbA0AAJvfwACf0UYSpntdLDLaMBZNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAMLaMKEG9RnqxCELyg5SiWaFZXyWl0AAm5_AAJ_RRhKiu5ZRQOxWgw2BA'
-        self.profile_id = 'CgACAgIAAxkBAAMOaMKETaEfPD7btpw6-xltJHM6MQMAAnB_AAJ_RRhKvaDK5arl6C82BA'
+        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
+        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
+        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
 
 
     async def reg_handler(self):

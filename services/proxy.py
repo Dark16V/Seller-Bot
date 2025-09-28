@@ -38,7 +38,7 @@ class ProxyManager():
             return True
         
 
-    async def create_proxy(self, proxy_id: int, user_id: int, ip: str, login: str, password: str, port: int, category: str, type: str, country: str, date, date_end):
+    async def create_proxy(self, user_id: int, ip: str, login: str, password: str, port: int, category: str, type: str, country: str, date, date_end, proxy_id: int = None):
         async with self.session() as s:
             if not (await s.execute(select(Proxy).where(Proxy.ip == ip))).scalar_one_or_none():
                 proxy = Proxy(

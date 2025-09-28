@@ -6,7 +6,7 @@ class Proxy(Base):
     __tablename__ = "proxies"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    proxy_id: Mapped[int] = mapped_column(Integer, unique=True)
+    proxy_id: Mapped[int] = mapped_column(Integer, unique=True, nullable=True)
     user_id: Mapped[int] = mapped_column(BigInteger, nullable=True)
     ip: Mapped[str] = mapped_column(String(64))
     login: Mapped[int] = mapped_column(String)

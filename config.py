@@ -93,6 +93,15 @@ ipv4 = {
     "Cyprus 🇨🇾": "cy",
 }
 
+ipv4_cheep = {
+    "Russia 🇷🇺": "Russia",
+    "USA 🇺🇸": "USA",
+    "Germany 🇩🇪": "Germany",
+    "United Kingdom 🇬🇧": "Great Britan",
+    "Netherlands 🇳🇱": "Netherlands",
+    "Kazakhstan 🇰🇿": "Kazakhstan",
+}
+
 
 
 
