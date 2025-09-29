@@ -38933,3 +38933,1337 @@ Traceback (most recent call last):
 
 aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: wrong file identifier/HTTP URL specified
 09-28 11:34 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 08:47 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 08:53 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 08:53 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 08:55 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 08:56 | ERROR | [2d062e7d] Ошибка: 'NoneType' object is not subscriptable
+09-29 09:07 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:08 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:09 | ERROR | Cause exception while process update id=138774702 by bot id=8452174279
+ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774702, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774702, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774702, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774702, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F6A6FC0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774702, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F6A6B60>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774702, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F6A47C0>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F6A6E80>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.select_amount_proxy of <handlers.user.proxy.ProxyClient object at 0x000001D97F653...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 232, in select_amount_proxy
+    await self.create_order_proces(category=category, country=country, type=type, requested_count=requested_count, user=user, state=state, m=call, period=30, tariff=tariff)
+          │    │                            │                 │             │                     │                     │           │        │                       └ 'cheap'
+          │    │                            │                 │             │                     │                     │           │        └ CallbackQuery(id='5175637078903423864', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+          │    │                            │                 │             │                     │                     │           └ <aiogram.fsm.context.FSMContext object at 0x000001D97F617020>
+          │    │                            │                 │             │                     │                     └ <models.user.User object at 0x000001D97F7A8380>
+          │    │                            │                 │             │                     └ 1
+          │    │                            │                 │             └ 'http'
+          │    │                            │                 └ 'Russia'
+          │    │                            └ 'ipv4'
+          │    └ <function ProxyClient.create_order_proces at 0x000001D97F636F20>
+          └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 278, in create_order_proces
+    await state.update_data(balance=await self.ps.get_balance())
+          │     │                         │    │  └ <function PS.get_balance at 0x000001D97F636340>
+          │     │                         │    └ <api.proxy_soxy.PS object at 0x000001D97F653620>
+          │     │                         └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+          │     └ <function FSMContext.update_data at 0x000001D97A3527A0>
+          └ <aiogram.fsm.context.FSMContext object at 0x000001D97F617020>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\api\proxy_soxy.py", line 92, in get_balance
+    resp.raise_for_status()
+    │    └ <function ClientResponse.raise_for_status at 0x000001D979E74CC0>
+    └ <ClientResponse(https://proxysoxy.com/api/api/me) [404 None]>
+      <CIMultiDictProxy('Server': 'nginx/1.24.0 (Ubuntu)', 'Date': 'M...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiohttp\client_reqrep.py", line 629, in raise_for_status
+    raise ClientResponseError(
+          └ <class 'aiohttp.client_exceptions.ClientResponseError'>
+
+aiohttp.client_exceptions.ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+09-29 09:09 | ERROR | Cause exception while process update id=138774703 by bot id=8452174279
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774703, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774703, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774703, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774703, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F75C360>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774703, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F6A6FC0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774703, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F6A47C0>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079366989225', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F6A6E80>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.handler_confirm_order of <handlers.user.proxy.ProxyClient object at 0x000001D97F6...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 331, in handler_confirm_order
+    if admin_balance < price:
+       │               └ 0.18
+       └ None
+
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+09-29 09:10 | ERROR | Cause exception while process update id=138774712 by bot id=8452174279
+ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774712, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774712, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774712, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774712, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F6A45E0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774712, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F6A6FC0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774712, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F6A6E80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F76DB20>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.select_amount_proxy of <handlers.user.proxy.ProxyClient object at 0x000001D97F653...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 232, in select_amount_proxy
+    await self.create_order_proces(category=category, country=country, type=type, requested_count=requested_count, user=user, state=state, m=call, period=30, tariff=tariff)
+          │    │                            │                 │             │                     │                     │           │        │                       └ 'cheap'
+          │    │                            │                 │             │                     │                     │           │        └ CallbackQuery(id='5175637079595899098', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+          │    │                            │                 │             │                     │                     │           └ <aiogram.fsm.context.FSMContext object at 0x000001D97F6465D0>
+          │    │                            │                 │             │                     │                     └ <models.user.User object at 0x000001D97F68DC80>
+          │    │                            │                 │             │                     └ 1
+          │    │                            │                 │             └ 'http'
+          │    │                            │                 └ 'Russia'
+          │    │                            └ 'ipv4'
+          │    └ <function ProxyClient.create_order_proces at 0x000001D97F636F20>
+          └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 278, in create_order_proces
+    await state.update_data(balance=await self.ps.get_balance())
+          │     │                         │    │  └ <function PS.get_balance at 0x000001D97F636340>
+          │     │                         │    └ <api.proxy_soxy.PS object at 0x000001D97F653620>
+          │     │                         └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+          │     └ <function FSMContext.update_data at 0x000001D97A3527A0>
+          └ <aiogram.fsm.context.FSMContext object at 0x000001D97F6465D0>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\api\proxy_soxy.py", line 92, in get_balance
+    resp.raise_for_status()
+    │    └ <function ClientResponse.raise_for_status at 0x000001D979E74CC0>
+    └ <ClientResponse(https://proxysoxy.com/api/api/me) [404 None]>
+      <CIMultiDictProxy('Server': 'nginx/1.24.0 (Ubuntu)', 'Date': 'M...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiohttp\client_reqrep.py", line 629, in raise_for_status
+    raise ClientResponseError(
+          └ <class 'aiohttp.client_exceptions.ClientResponseError'>
+
+aiohttp.client_exceptions.ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+09-29 09:10 | ERROR | Cause exception while process update id=138774713 by bot id=8452174279
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774713, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774713, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774713, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774713, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F6A6E80>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774713, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F6A6FC0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774713, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F76DC60>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079196904346', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F76DB20>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.handler_confirm_order of <handlers.user.proxy.ProxyClient object at 0x000001D97F6...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 331, in handler_confirm_order
+    if admin_balance < price:
+       │               └ 0.18
+       └ None
+
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+09-29 09:12 | ERROR | Cause exception while process update id=138774722 by bot id=8452174279
+ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774722, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774722, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774722, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774722, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F76DDA0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774722, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F76E340>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774722, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F76CF40>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F76DB20>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.select_amount_proxy of <handlers.user.proxy.ProxyClient object at 0x000001D97F653...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 232, in select_amount_proxy
+    await self.create_order_proces(category=category, country=country, type=type, requested_count=requested_count, user=user, state=state, m=call, period=30, tariff=tariff)
+          │    │                            │                 │             │                     │                     │           │        │                       └ 'cheap'
+          │    │                            │                 │             │                     │                     │           │        └ CallbackQuery(id='5175637078080984506', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+          │    │                            │                 │             │                     │                     │           └ <aiogram.fsm.context.FSMContext object at 0x000001D97F831DF0>
+          │    │                            │                 │             │                     │                     └ <models.user.User object at 0x000001D97F8A43D0>
+          │    │                            │                 │             │                     └ 1
+          │    │                            │                 │             └ 'socks'
+          │    │                            │                 └ 'USA'
+          │    │                            └ 'ipv4'
+          │    └ <function ProxyClient.create_order_proces at 0x000001D97F636F20>
+          └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 278, in create_order_proces
+    await state.update_data(balance=await self.ps.get_balance())
+          │     │                         │    │  └ <function PS.get_balance at 0x000001D97F636340>
+          │     │                         │    └ <api.proxy_soxy.PS object at 0x000001D97F653620>
+          │     │                         └ <handlers.user.proxy.ProxyClient object at 0x000001D97F6534D0>
+          │     └ <function FSMContext.update_data at 0x000001D97A3527A0>
+          └ <aiogram.fsm.context.FSMContext object at 0x000001D97F831DF0>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\api\proxy_soxy.py", line 92, in get_balance
+    resp.raise_for_status()
+    │    └ <function ClientResponse.raise_for_status at 0x000001D979E74CC0>
+    └ <ClientResponse(https://proxysoxy.com/api/api/me) [404 None]>
+      <CIMultiDictProxy('Server': 'nginx/1.24.0 (Ubuntu)', 'Date': 'M...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiohttp\client_reqrep.py", line 629, in raise_for_status
+    raise ClientResponseError(
+          └ <class 'aiohttp.client_exceptions.ClientResponseError'>
+
+aiohttp.client_exceptions.ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+09-29 09:12 | ERROR | Cause exception while process update id=138774723 by bot id=8452174279
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001D9729F8220>
+    │       └ <function run at 0x000001D9748FF560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001D97F58AF80>
+           │      └ <function Runner.run at 0x000001D97499DA80>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001D97499B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001D97F650050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001D97499B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001D97499D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001D9748C4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,)}
+                     │    │           │    └ Update(update_id=138774723, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>
+                     │    └ <function Dispatcher.feed_update at 0x000001D97A3BD580>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C32C7D0>
+                     └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774723, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001D97C1DB380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774723, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001D97C1DB770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774723, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x000001D97F76DD00>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774723, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x000001D97F76CF40>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1d97c1db0e0'>>, Update(update_id=138774723, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001D97A3BCB80>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001D97F76E340>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001D97A3BC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001D97A3BCC20>
+                 └ <Dispatcher '0x1d97c1db0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001D97A3BC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001D97C2CA140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x000001D97C1DBB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x000001D97C1DBCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1d97c1db0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001D97C1DA7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079338880374', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x000001D97F76DC60>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.handler_confirm_order of <handlers.user.proxy.ProxyClient object at 0x000001D97F6...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 331, in handler_confirm_order
+    if admin_balance < price:
+       │               └ 0.3
+       └ None
+
+TypeError: '<' not supported between instances of 'NoneType' and 'float'
+09-29 09:13 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:14 | ERROR | Cause exception while process update id=138774732 by bot id=8452174279
+ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000159A3AB8220>
+    │       └ <function run at 0x00000159A591F560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000159C559A500>
+           │      └ <function Runner.run at 0x00000159A59BDA80>
+           └ <asyncio.runners.Runner object at 0x00000159C542BCB0>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000159A59BB600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000159C542BCB0>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x00000159A59BB560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000159A59BD3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000159A58E4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,)}
+                     │    │           │    └ Update(update_id=138774732, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x00000159AD21A7B0>
+                     │    └ <function Dispatcher.feed_update at 0x00000159AB3ED580>
+                     └ <Dispatcher '0x159ad21b0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x00000159AB3EC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x00000159AD3707D0>
+                     └ <Dispatcher '0x159ad21b0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774732, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x00000159AD21B380>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774732, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x00000159AD21B770>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774732, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function TelegramEventObserver.trigger at 0x00000159C568EA20>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774732, message=None, edited_message=None, channel_post=None, edited_channel_post=None, business_connecti...
+                 └ <function CallableObject.call at 0x00000159C568EE80>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x159ad21b0e0'>>, Update(update_id=138774732, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x00000159AB3ECB80>
+                 └ <Dispatcher '0x159ad21b0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x00000159C568EDE0>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x00000159AB3EC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x00000159AD30A140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x00000159AB3ECC20>
+                 └ <Dispatcher '0x159ad21b0e0'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                     │        └ <function TelegramEventObserver.trigger at 0x00000159AB3EC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x00000159AD30A140>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.rate_limit.ThrottlingMiddleware object at 0x00000159AD21BB60>, functools.partial(<middlewares....
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\rate_limit.py", line 23, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ functools.partial(<middlewares.callback.CheckUserCallbackMiddleware object at 0x00000159AD21BCB0>, <function CallableObject.c...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\callback.py", line 44, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x159ad21b0e0'>, 'bots': (<aiogram.client.bot.Bot object at 0x00000159AD21A7B0>,), 'bot': <aiogra...
+                 │       └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+                 └ <function CallableObject.call at 0x00000159C568ED40>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method ProxyClient.select_amount_proxy of <handlers.user.proxy.ProxyClient object at 0x00000159C56D3...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 232, in select_amount_proxy
+    await self.create_order_proces(category=category, country=country, type=type, requested_count=requested_count, user=user, state=state, m=call, period=30, tariff=tariff)
+          │    │                            │                 │             │                     │                     │           │        │                       └ 'cheap'
+          │    │                            │                 │             │                     │                     │           │        └ CallbackQuery(id='5175637079174942016', from_user=User(id=1205046912, is_bot=False, first_name='᠌ ᠌ ᠌᠌ ᠌ ᠌', last_name=None, ...
+          │    │                            │                 │             │                     │                     │           └ <aiogram.fsm.context.FSMContext object at 0x00000159C5689350>
+          │    │                            │                 │             │                     │                     └ <models.user.User object at 0x00000159C568BB50>
+          │    │                            │                 │             │                     └ 1
+          │    │                            │                 │             └ 'http'
+          │    │                            │                 └ 'Russia'
+          │    │                            └ 'ipv4'
+          │    └ <function ProxyClient.create_order_proces at 0x00000159C564B060>
+          └ <handlers.user.proxy.ProxyClient object at 0x00000159C56D3230>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\proxy.py", line 279, in create_order_proces
+    await state.update_data(balance=await self.ps.get_balance())
+          │     │                         │    │  └ <function PS.get_balance at 0x00000159C5649F80>
+          │     │                         │    └ <api.proxy_soxy.PS object at 0x00000159C56D3380>
+          │     │                         └ <handlers.user.proxy.ProxyClient object at 0x00000159C56D3230>
+          │     └ <function FSMContext.update_data at 0x00000159AB3827A0>
+          └ <aiogram.fsm.context.FSMContext object at 0x00000159C5689350>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\api\proxy_soxy.py", line 92, in get_balance
+    resp.raise_for_status()
+    │    └ <function ClientResponse.raise_for_status at 0x00000159AAED4CC0>
+    └ <ClientResponse(https://proxysoxy.com/api/api/me) [404 None]>
+      <CIMultiDictProxy('Server': 'nginx/1.24.0 (Ubuntu)', 'Date': 'M...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiohttp\client_reqrep.py", line 629, in raise_for_status
+    raise ClientResponseError(
+          └ <class 'aiohttp.client_exceptions.ClientResponseError'>
+
+aiohttp.client_exceptions.ClientResponseError: 404, message='', url='https://proxysoxy.com/api/api/me'
+09-29 09:14 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:19 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:33 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 09:59 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:01 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:02 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:14 | ERROR | Cause exception while process update id=718838177 by bot id=8375687840
+FileNotFoundError: [Errno 2] No such file or directory: 'media/menu_test.mp4'
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\start.py", line 31, in send_media
+    await self.bot.get_file(animation)
+          │    │   │        └ 'TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ'
+          │    │   └ <function Bot.get_file at 0x000001CB0C6D6200>
+          │    └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+          └ <handlers.user.start.StartMenu object at 0x000001CB269E3230>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\bot.py", line 1734, in get_file
+    return await self(call, request_timeout=request_timeout)
+                 │    │                     └ None
+                 │    └ GetFile(file_id='TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ')
+                 └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\bot.py", line 485, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+                 │    │       │     │               └ None
+                 │    │       │     └ GetFile(file_id='TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ')
+                 │    │       └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+                 │    └ <aiogram.client.session.aiohttp.AiohttpSession object at 0x000001CB0E58A7B0>
+                 └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+           │    │                   │          │    └ GetFile(file_id='TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ')
+           │    │                   │          └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+           │    │                   └ functools.partial(<bound method AiohttpSession.make_request of <aiogram.client.session.aiohttp.AiohttpSession object at 0x000...
+           │    └ ~TelegramType
+           └ <function cast at 0x000001CB06C8AB60>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 185, in make_request
+    response = self.check_response(
+               │    └ <function BaseSession.check_response at 0x000001CB0C65D440>
+               └ <aiogram.client.session.aiohttp.AiohttpSession object at 0x000001CB0E58A7B0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+          │                         │               └ 'Bad Request: invalid file_id'
+          │                         └ GetFile(file_id='TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ')
+          └ <class 'aiogram.exceptions.TelegramBadRequest'>
+
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: invalid file_id
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001CB04DA8220>
+    │       └ <function run at 0x000001CB06C0F560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001CB2690B140>
+           │      └ <function Runner.run at 0x000001CB06CADA80>
+           └ <asyncio.runners.Runner object at 0x000001CB269E0050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001CB06CAB600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001CB269E0050>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x000001CB06CAB560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001CB06CAD3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001CB06BD4040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,)}
+                     │    │           │    └ Update(update_id=718838177, message=Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001CB0E58A660>
+                     │    └ <function Dispatcher.feed_update at 0x000001CB0C75D580>
+                     └ <Dispatcher '0x1cb0e58af90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001CB0C75C040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001CB0E6DC950>
+                     └ <Dispatcher '0x1cb0e58af90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=718838177, message=Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001CB0E58B230>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=718838177, message=Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001CB0E58B620>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=718838177, message=Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC...
+                 └ <function TelegramEventObserver.trigger at 0x000001CB26A26A20>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │             └ Update(update_id=718838177, message=Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC...
+                 └ <function CallableObject.call at 0x000001CB26A26C00>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1cb0e58af90'>>, Update(update_id=718838177, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │    │                           │                  └ Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 │    │                           └ 'message'
+                 │    └ <function Router.propagate_event at 0x000001CB0C75CB80>
+                 └ <Dispatcher '0x1cb0e58af90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │        │                     │               └ Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001CB26A26DE0>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001CB0C75C040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001CB0E58AA50>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001CB0C75CC20>
+                 └ <Dispatcher '0x1cb0e58af90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                     │        │       └ Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001CB0C75C180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001CB0E58AA50>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │             └ Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 └ functools.partial(<middlewares.message.CheckUserMiddleware object at 0x000001CB0E58B8C0>, <function CallableObject.call at 0x...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\message.py", line 48, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1cb0e58af90'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001CB0E58A660>,), 'bot': <aiogra...
+                 │       └ Message(message_id=1237, date=datetime.datetime(2025, 9, 29, 8, 14, 49, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 └ <function CallableObject.call at 0x000001CB26A26F20>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method StartMenu.send_welcome of <handlers.user.start.StartMenu object at 0x000001CB269E3230>>, Mess...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\start.py", line 48, in send_welcome
+    animation = await self.send_media('menu.gif', self.menu_id)
+                      │    │                      │    └ 'TESTCgACAgIAAxkDAAIEn2jWNRIit3K66ghlrxVM4EXxBnXxAAJvfwACf0UYSpntdLDLaMBZNgQ'
+                      │    │                      └ <handlers.user.start.StartMenu object at 0x000001CB269E3230>
+                      │    └ <function StartMenu.send_media at 0x000001CB269B51C0>
+                      └ <handlers.user.start.StartMenu object at 0x000001CB269E3230>
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\handlers\user\start.py", line 34, in send_media
+    with open("media/menu_test.mp4", "rb") as f:
+
+FileNotFoundError: [Errno 2] No such file or directory: 'media/menu_test.mp4'
+09-29 10:15 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:21 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:23 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+09-29 10:23 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:39 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:40 | ERROR | Cause exception while process update id=138774752 by bot id=8452174279
+TelegramBadRequest: Telegram server says - Bad Request: member list is inaccessible
+Traceback (most recent call last):
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py", line 22, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x0000026D420C8220>
+    │       └ <function run at 0x0000026D43F7F560>
+    └ <module 'asyncio' from 'C:\\Users\\darka\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x0000026D63C6B060>
+           │      └ <function Runner.run at 0x0000026D4401DA80>
+           └ <asyncio.runners.Runner object at 0x0000026D63D242F0>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at C:\Users\darka\OneDrive\Рабочий стол\Bot\main.py:16> wait_for=<Future pen...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026D4401B600>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000026D63D242F0>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000026D4401B560>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026D4401D3A0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 2040, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026D43F44040>
+    └ <Handle Task.task_wakeup()>
+  File "C:\Users\darka\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup()>
+> File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,)}
+                     │    │           │    └ Update(update_id=138774752, message=Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x0000026D4B8EA660>
+                     │    └ <function Dispatcher.feed_update at 0x0000026D49ACD580>
+                     └ <Dispatcher '0x26d4b8eaf90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026D49ACC040>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026D4BA3C8D0>
+                     └ <Dispatcher '0x26d4b8eaf90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774752, message=Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x0000026D4B8EB230>, functools...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 56, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774752, message=Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x0000026D4B8EB620>, <function TelegramEventObserver...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 42, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │       └ Update(update_id=138774752, message=Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC...
+                 └ <function TelegramEventObserver.trigger at 0x0000026D63D86AC0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │             └ Update(update_id=138774752, message=Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC...
+                 └ <function CallableObject.call at 0x0000026D63D86A20>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 43, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x26d4b8eaf90'>>, Update(update_id=138774752, messa...
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │    │                           │                  └ Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 │    │                           └ 'message'
+                 │    └ <function Router.propagate_event at 0x0000026D49ACCB80>
+                 └ <Dispatcher '0x26d4b8eaf90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │        │                     │               └ Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026D63D86C00>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026D49ACC040>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026D4B8EAA50>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 141, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026D49ACCC20>
+                 └ <Dispatcher '0x26d4b8eaf90'>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                     │        │       └ Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                     │        └ <function TelegramEventObserver.trigger at 0x0000026D49ACC180>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026D4B8EAA50>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26d4b8eaf90'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026D4B8EA660>,), 'bot': <aiogra...
+                 │             └ Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+                 └ functools.partial(<middlewares.message.CheckUserMiddleware object at 0x0000026D4B8EB8C0>, <function CallableObject.call at 0x...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\middlewares\message.py", line 24, in __call__
+    member = await event.bot.get_chat_member(chat_id='@ProxyCloudCH', user_id=telegram_id)
+                   │     │                                                    └ 1205046912
+                   │     └ <property object at 0x0000026D449F74C0>
+                   └ Message(message_id=2176, date=datetime.datetime(2025, 9, 29, 8, 40, 21, tzinfo=TzInfo(UTC)), chat=Chat(id=1205046912, type='p...
+
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\bot.py", line 1653, in get_chat_member
+    return await self(call, request_timeout=request_timeout)
+                 │    │                     └ None
+                 │    └ GetChatMember(chat_id='@ProxyCloudCH', user_id=1205046912)
+                 └ <aiogram.client.bot.Bot object at 0x0000026D4B8EA660>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\bot.py", line 485, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+                 │    │       │     │               └ None
+                 │    │       │     └ GetChatMember(chat_id='@ProxyCloudCH', user_id=1205046912)
+                 │    │       └ <aiogram.client.bot.Bot object at 0x0000026D4B8EA660>
+                 │    └ <aiogram.client.session.aiohttp.AiohttpSession object at 0x0000026D4B8EA7B0>
+                 └ <aiogram.client.bot.Bot object at 0x0000026D4B8EA660>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+           │    │                   │          │    └ GetChatMember(chat_id='@ProxyCloudCH', user_id=1205046912)
+           │    │                   │          └ <aiogram.client.bot.Bot object at 0x0000026D4B8EA660>
+           │    │                   └ functools.partial(<bound method AiohttpSession.make_request of <aiogram.client.session.aiohttp.AiohttpSession object at 0x000...
+           │    └ ~TelegramType
+           └ <function cast at 0x0000026D43FFAB60>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 185, in make_request
+    response = self.check_response(
+               │    └ <function BaseSession.check_response at 0x0000026D499CC180>
+               └ <aiogram.client.session.aiohttp.AiohttpSession object at 0x0000026D4B8EA7B0>
+  File "C:\Users\darka\OneDrive\Рабочий стол\Bot\venv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+          │                         │               └ 'Bad Request: member list is inaccessible'
+          │                         └ GetChatMember(chat_id='@ProxyCloudCH', user_id=1205046912)
+          └ <class 'aiogram.exceptions.TelegramBadRequest'>
+
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: member list is inaccessible
+09-29 10:40 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+09-29 10:41 | ERROR | Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected

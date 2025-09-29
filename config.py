@@ -12,101 +12,101 @@ from db import async_session
 
 load_dotenv()
 
-bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
-dp = Dispatcher()
-dp.message.middleware(CheckUserMiddleware(async_session))
-dp.callback_query.middleware(ThrottlingMiddleware(limit=0.5))
-dp.callback_query.middleware(CheckUserCallbackMiddleware(async_session))
+
+class Config:
+    def __init__(self):
+        self.bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+        self.dp = Dispatcher()
+        self.dp.message.middleware(CheckUserMiddleware(async_session))
+        self.dp.callback_query.middleware(ThrottlingMiddleware(limit=0.5))
+        self.dp.callback_query.middleware(CheckUserCallbackMiddleware(async_session))
+
+
+        self.ipv6 = {
+            "Germany 🇩🇪": "de",
+            "Netherlands 🇳🇱": "nl",
+            "United Kingdom 🇬🇧": "gb",
+            "Canada 🇨🇦": "ca",
+            "Russia 🇷🇺": "ru",
+            "Usa 🇺🇸": "us",
+            "France 🇫🇷": "fr",
+            "Singapore 🇸🇬": "sg",
+            "Japan 🇯🇵": "jp"
+        }
+
+
+        self.ipv4 = {
+            "Russia 🇷🇺": "ru",
+            "Portugal 🇵🇹": "pt",
+            "Philippines 🇵🇭": "ph",
+            "Ukraine 🇺🇦": "ua",
+            "Austria 🇦🇹": "at",
+            "Lithuania 🇱🇹": "lt",
+            "France 🇫🇷": "fr",
+            "Czechia 🇨🇿": "cz",
+            "Greece 🇬🇷": "gr",
+            "Denmark 🇩🇰": "dk",
+            "Egypt 🇪🇬": "eg",
+            "Slovenia 🇸🇮": "si",
+            "Italy 🇮🇹": "it",
+            "Serbia 🇷🇸": "rs",
+            "Switzerland 🇨🇭": "ch",
+            "Japan 🇯🇵": "jp",
+            "Spain 🇪🇸": "es",
+            "Usa 🇺🇸": "us",
+            "Norway 🇳🇴": "no",
+            "Indonesia 🇮🇩": "id",
+            "Bulgaria 🇧🇬": "bg",
+            "Kyrgyzstan 🇰🇬": "kg",
+            "United Kingdom 🇬🇧": "gb",
+            "Chile 🇨🇱": "cl",
+            "South Africa 🇿🇦": "za",
+            "Finland 🇫🇮": "fi",
+            "Kazakhstan 🇰🇿": "kz",
+            "Brazil 🇧🇷": "br",
+            "Australia 🇦🇺": "au",
+            "Morocco 🇲🇦": "ma",
+            "Turkmenistan 🇹🇲": "tm",
+            "Bangladesh 🇧🇩": "bd",
+            "Estonia 🇪🇪": "ee",
+            "Netherlands 🇳🇱": "nl",
+            "Israel 🇮🇱": "il",
+            "South Korea 🇰🇷": "kr",
+            "Malaysia 🇲🇾": "my",
+            "Canada 🇨🇦": "ca",
+            "Uae 🇦🇪": "ae",
+            "Vietnam 🇻🇳": "vn",
+            "Taiwan 🇹🇼": "tw",
+            "Belgium 🇧🇪": "be",
+            "Singapore 🇸🇬": "sg",
+            "Hong Kong 🇭🇰": "hk",
+            "Uzbekistan 🇺🇿": "uz",
+            "Belarus 🇧🇾": "by",
+            "Romania 🇷🇴": "ro",
+            "Poland 🇵🇱": "pl",
+            "Armenia 🇦🇲": "am",
+            "Tajikistan 🇹🇯": "tj",
+            "Sweden 🇸🇪": "se",
+            "Turkey 🇹🇷": "tr",
+            "Germany 🇩🇪": "de",
+            "Latvia 🇱🇻": "lv",
+            "Cyprus 🇨🇾": "cy",
+        }
+
+        self.ipv4_cheep = {
+            "Russia 🇷🇺": "Russia",
+            "USA 🇺🇸": "USA",
+            "Germany 🇩🇪": "Germany",
+            "United Kingdom 🇬🇧": "Great Britan",
+            "Netherlands 🇳🇱": "Netherlands",
+            "Kazakhstan 🇰🇿": "Kazakhstan",
+        }
 
 
 
 
-ipv6 = {
-    "Germany 🇩🇪": "de",
-    "Netherlands 🇳🇱": "nl",
-    "United Kingdom 🇬🇧": "gb",
-    "Canada 🇨🇦": "ca",
-    "Russia 🇷🇺": "ru",
-    "Usa 🇺🇸": "us",
-    "France 🇫🇷": "fr",
-    "Singapore 🇸🇬": "sg",
-    "Japan 🇯🇵": "jp"
-}
-
-
-
-ipv4 = {
-    "Russia 🇷🇺": "ru",
-    "Portugal 🇵🇹": "pt",
-    "Philippines 🇵🇭": "ph",
-    "Ukraine 🇺🇦": "ua",
-    "Austria 🇦🇹": "at",
-    "Lithuania 🇱🇹": "lt",
-    "France 🇫🇷": "fr",
-    "Czechia 🇨🇿": "cz",
-    "Greece 🇬🇷": "gr",
-    "Denmark 🇩🇰": "dk",
-    "Egypt 🇪🇬": "eg",
-    "Slovenia 🇸🇮": "si",
-    "Italy 🇮🇹": "it",
-    "Serbia 🇷🇸": "rs",
-    "Switzerland 🇨🇭": "ch",
-    "Japan 🇯🇵": "jp",
-    "Spain 🇪🇸": "es",
-    "Usa 🇺🇸": "us",
-    "Norway 🇳🇴": "no",
-    "Indonesia 🇮🇩": "id",
-    "Bulgaria 🇧🇬": "bg",
-    "Kyrgyzstan 🇰🇬": "kg",
-    "United Kingdom 🇬🇧": "gb",
-    "Chile 🇨🇱": "cl",
-    "South Africa 🇿🇦": "za",
-    "Finland 🇫🇮": "fi",
-    "Kazakhstan 🇰🇿": "kz",
-    "Brazil 🇧🇷": "br",
-    "Australia 🇦🇺": "au",
-    "Morocco 🇲🇦": "ma",
-    "Turkmenistan 🇹🇲": "tm",
-    "Bangladesh 🇧🇩": "bd",
-    "Estonia 🇪🇪": "ee",
-    "Netherlands 🇳🇱": "nl",
-    "Israel 🇮🇱": "il",
-    "South Korea 🇰🇷": "kr",
-    "Malaysia 🇲🇾": "my",
-    "Canada 🇨🇦": "ca",
-    "Uae 🇦🇪": "ae",
-    "Vietnam 🇻🇳": "vn",
-    "Taiwan 🇹🇼": "tw",
-    "Belgium 🇧🇪": "be",
-    "Singapore 🇸🇬": "sg",
-    "Hong Kong 🇭🇰": "hk",
-    "Uzbekistan 🇺🇿": "uz",
-    "Belarus 🇧🇾": "by",
-    "Romania 🇷🇴": "ro",
-    "Poland 🇵🇱": "pl",
-    "Armenia 🇦🇲": "am",
-    "Tajikistan 🇹🇯": "tj",
-    "Sweden 🇸🇪": "se",
-    "Turkey 🇹🇷": "tr",
-    "Germany 🇩🇪": "de",
-    "Latvia 🇱🇻": "lv",
-    "Cyprus 🇨🇾": "cy",
-}
-
-ipv4_cheep = {
-    "Russia 🇷🇺": "Russia",
-    "USA 🇺🇸": "USA",
-    "Germany 🇩🇪": "Germany",
-    "United Kingdom 🇬🇧": "Great Britan",
-    "Netherlands 🇳🇱": "Netherlands",
-    "Kazakhstan 🇰🇿": "Kazakhstan",
-}
-
-
-
-
-proxy_info = {
-    "ipv4 - http": """⚡️ <b>Вы выбрали IPv4 - HTTPS proxy</b>
+        self.proxy_info = {
+            "ipv4 - http": """⚡️ <b>Вы выбрали IPv4 - HTTPS proxy</b>
 ➖➖➖➖➖
 — <code>Поддержка IPv4 адресов</code>
 — <code>Работает через безопасный HTTPS протокол</code>
@@ -137,5 +137,7 @@ proxy_info = {
 — <code>Хорош для работы с сервисами, поддерживающими IPv6</code>
 ➖➖➖➖➖
 ℹ️  <b>Если остались вопросы — обратитесь в «Тех Поддержку»</b>"""
-}
+        }
 
+
+config = Config()

@@ -11,31 +11,20 @@ import os
 
 from services import DbManager
 
+from utils.utils import get_media
+
 
 
 
 class OrdersClient():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.db_manager = DbManager(async_session)
 
     async def reg_handler(self):
         self.dp.callback_query(F.data == 'my_orders')(self.orders_handler)
         self.dp.callback_query(OrdersPage.filter())(self.orders_page_handler)
-
-
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation 
 
 
     async def format_orders(self, orders, page: int = 1, len_page: int = 1):
@@ -53,9 +42,7 @@ class OrdersClient():
 
     async def orders_handler(self, callback: CallbackQuery):
         await callback.answer()
-
-        animation = await self.send_media('profile.gif', self.profile_id)
-
+        animation = await get_media('profile')
 
         orders = await self.db_manager.get_order(user_id=callback.from_user.id)
 
@@ -78,7 +65,7 @@ class OrdersClient():
     async def orders_page_handler(self, callback: CallbackQuery, callback_data: OrdersPage):
         page = callback_data.page
         orders = await self.db_manager.get_order(user_id=callback.from_user.id)
-        animation = await self.send_media('profile.gif', self.profile_id)
+        animation = await get_media('profile')
 
         start = (page - 1) * 1
         end = start + 1

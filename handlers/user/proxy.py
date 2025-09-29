@@ -16,8 +16,7 @@ from models.user import User
 
 from utils.state.state import NumProx, Prolong
 from utils.loguru import logger
-from config import proxy_info
-import aiohttp
+from utils.utils import get_media
 
 from datetime import datetime, timedelta
 
@@ -28,7 +27,6 @@ import asyncio
 from services import DbManager
 
 from dotenv import load_dotenv
-from config import ipv6, ipv4, ipv4_cheep
 
 from api.proxy_soxy import PS
 from api.proxy6 import ProxyS
@@ -36,18 +34,19 @@ from api.proxy6 import ProxyS
 load_dotenv()
 
 class ProxyClient():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.api_key = os.getenv('API_KEY')
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
         self.crypto = AioCryptoPay(token=os.getenv('CRYPTO_TOKEN'), network=Networks.MAIN_NET)
         self.db_manager = DbManager(async_session)
         self.x_price = 1.3
         self.ps = PS()
         self.proxy6 = ProxyS()
+        self.ipv4 = config.ipv4
+        self.ipv6 = config.ipv6
+        self.ipv4_cheep = config.ipv4_cheep
+        self.proxy_info = config.proxy_info
 
 
     async def reg_handler(self):
@@ -82,19 +81,10 @@ class ProxyClient():
         return None
 
 
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation 
-
     async def buy_proxy_callback(self, callback: CallbackQuery):
         await callback.answer()
 
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await callback.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption="📂 <b>Выбери категорию 👇</b>"), 
                                             reply_markup=await IBK.get_categories_keyboard())
@@ -107,7 +97,7 @@ class ProxyClient():
 
         await state.update_data(category=category)
 
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         text = """
 ℹ️ <b>Выберите тариф:</b>
 
@@ -126,8 +116,6 @@ class ProxyClient():
 – <b>Для чего?</b> <code>подходит тем кто ищет постоянную поддержку конфиденциальности</code>
 """
 
-
-
         if category == 'ipv4':
             await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                                     caption=text),
@@ -144,7 +132,7 @@ class ProxyClient():
     async def tariff(self, call: CallbackQuery, state: FSMContext):
         await call.answer()
         await state.update_data(tariff=call.data)
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
 
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                                 caption='💎 <b>Выбери тип:</b>'),
@@ -161,12 +149,12 @@ class ProxyClient():
         tariff = data.get('tariff')
         if category == 'ipv4':
             if tariff == 'cheap':
-                buttons = await IBK.select_country_proxy(ipv4_cheep)
+                buttons = await IBK.select_country_proxy(self.ipv4_cheep)
             else:
-                buttons = await IBK.select_country_proxy(ipv4)
+                buttons = await IBK.select_country_proxy(self.ipv4)
         else:
-            buttons = await IBK.select_country_proxy(ipv6)
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+            buttons = await IBK.select_country_proxy(self.ipv6)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption='🌍 <b>Выбери страну:</b>'),
                                             reply_markup=buttons)
@@ -178,12 +166,12 @@ class ProxyClient():
         data = await state.get_data()
         category = data.get('category')
         type = data.get('type')
-        proxy_inf = proxy_info.get(f'{category} - {type}')
+        proxy_inf = self.proxy_info.get(f'{category} - {type}')
     
         await call.answer()
         await state.update_data(country=callback_data.country)
 
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption=proxy_inf), reply_markup=await IBK.accept())
 
         await state.set_state(NumProx.await_accept)
@@ -192,7 +180,7 @@ class ProxyClient():
     async def accept_handler(self, call: CallbackQuery, state: FSMContext):
         await call.answer()
         
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption='🎲 <b>Выбери количество:</b>'), reply_markup=await IBK.amount_proxy())
         await state.set_state(NumProx.number)
 
@@ -221,7 +209,7 @@ class ProxyClient():
     
 
         if tariff != 'cheap':
-            animation = await self.send_media('catalogue.gif', self.catalogue_id)
+            animation = await get_media('catalog')
             await call.message.edit_media(media=InputMediaAnimation(media=animation, caption='🗓 <b>Выбери период:</b>'), reply_markup=await IBK.select_period())
         else:
             category = data.get('category')
@@ -264,8 +252,8 @@ class ProxyClient():
         if tariff == 'cheap':
             price = await self.ps.get_price(country=country, proxy_type='HTTP' if type == 'http' else 'SOCKS5')
 
-            animation = await self.send_media('catalogue.gif', self.catalogue_id)
-            country_name = next((k for k, v in ipv4_cheep.items() if v == country), None)
+            animation = await get_media('catalog')
+            country_name = next((k for k, v in self.ipv4_cheep.items() if v == country), None)
             await m.edit_media(media=InputMediaAnimation(media=animation, caption="➖➖➖📝 <b>Ваш заказ:</b>➖➖➖\n\n"
                         f"📂 <b>Категория:</b> <code>IPv4</code>\n"
                         f"🏳️ <b>Страна:</b> <code>{country_name}</code>\n"
@@ -273,8 +261,8 @@ class ProxyClient():
                         f"⏳ <b>Срок:</b>  <code>{period} дней </code>\n"
                         f"💲 <b>Общая сумма:</b> <code>{((await self.calculate_rub_to_usdt(price['price'])) * self.x_price):.2f}$</code>"), reply_markup=await IBK.confirm_order())
             await state.update_data(iid=price['product_id'])
-            await state.update_data(price=await self.calculate_rub_to_usdt(price['price']))
-            await state.update_data(balance=100000)
+            await state.update_data(price=price['price'])
+            await state.update_data(balance=await self.ps.get_balance())
         else:
             version = 6 if category == 'ipv6' else 4
             result = await self.proxy6.get_price(self.api_key, count=requested_count, period=period, version=version)
@@ -283,9 +271,9 @@ class ProxyClient():
                 await state.update_data(price=result['price'])
 
                 if category == 'ipv6':
-                    country_name = next((k for k, v in ipv6.items() if v == country), None)
+                    country_name = next((k for k, v in self.ipv6.items() if v == country), None)
                 else:
-                    country_name = next((k for k, v in ipv4.items() if v == country), None)
+                    country_name = next((k for k, v in self.ipv4.items() if v == country), None)
                 animation = await self.send_media('catalogue.gif', self.catalogue_id)
                 await m.edit_media(media=InputMediaAnimation(media=animation, caption="➖➖➖📝 <b>Ваш заказ:</b>➖➖➖\n\n"
                             f"📂 <b>Категория:</b> <code>{'IPv6' if category == 'ipv6' else 'IPv4'}</code>\n"
@@ -326,11 +314,18 @@ class ProxyClient():
             logger.info(f"[{track_number}] Начало обработки заказа (user={call.from_user.id}, category={category})")
 
             
+            if tariff != 'cheap':
+                if admin_balance < price:
+                    await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
+                    await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price}')
+                    return
+            else:
+                price = await self.calculate_rub_to_usdt(price)
+                if admin_balance < price:
+                    await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
+                    await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте ProxySoxy. Пополните свой баланс в ProxySoxy минимум на {price}')
+                    return
 
-            if admin_balance < price:
-                await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
-                await self.bot.send_message(chat_id=7431078179, text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price}')
-                return
 
             await call.answer()
             await call.message.delete()
@@ -372,9 +367,9 @@ class ProxyClient():
                     
                     for proxy_id, proxy_info in result["list"].items():
                         if category == 'ipv6':
-                            country_name = next((k for k, v in ipv6.items() if v == country), None)
+                            country_name = next((k for k, v in self.ipv6.items() if v == country), None)
                         else:
-                            country_name = next((k for k, v in ipv4.items() if v == country), None)
+                            country_name = next((k for k, v in self.ipv4.items() if v == country), None)
                         date_start = (datetime.strptime(proxy_info['date'], "%Y-%m-%d %H:%M:%S")).strftime("%Y-%m-%d %H:%M")
                         date_end = (datetime.strptime(proxy_info['date_end'], "%Y-%m-%d %H:%M:%S")).strftime("%Y-%m-%d %H:%M")
                         await call.message.answer(f'IP: {proxy_info['host']}\n'
@@ -452,7 +447,7 @@ class ProxyClient():
         end = start + 1
         page_proxies = proxies[start:end]
 
-        animation = await self.send_media('profile.gif', self.profile_id)
+        animation = await get_media('profile')
         text = await self.format_proxies(page_proxies, len_page=len(proxies))
         for p in page_proxies:
             pid = p.proxy_id
@@ -472,9 +467,9 @@ class ProxyClient():
         text = f"🧑‍💻 <b>Ваши прокси:</b> {page}/{len_page}\n\n"
         for p in proxies:
             if p.category == 'ipv6':
-                country_name = next((k for k, v in ipv6.items() if v == p.country), p.country)
+                country_name = next((k for k, v in self.ipv6.items() if v == p.country), p.country)
             else:
-                country_name = next((k for k, v in ipv4.items() if v == p.country), p.country)
+                country_name = next((k for k, v in self.ipv4.items() if v == p.country), p.country)
             text += (
                 "📡 <b>Информация о прокси</b>\n\n"
                 f"🌐 <b>IP:</b> <code>{p.ip}</code>\n"
@@ -506,7 +501,7 @@ class ProxyClient():
     async def proxies_page_handler(self, callback: CallbackQuery, callback_data: ProxiesPage):
         page = callback_data.page
         proxies = await self.db_manager.get_proxy(user_id=callback.from_user.id)
-        animation = await self.send_media('profile.gif', self.profile_id)
+        animation = await get_media('profile')
 
         start = (page - 1) * 1
         end = start + 1
@@ -527,7 +522,7 @@ class ProxyClient():
         await call.answer()
         await state.update_data(proxy_id=proxy_id)
         proxy = await self.db_manager.get_proxy(proxy_id=proxy_id)
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                                                 caption=f'🌐 <b>Продление прокси:</b> {proxy.ip}\n🕐 <b>Срок окончания прокси:</b> <code>{proxy.date_end}</code>\n\n<b>📆 Выберите период для продления:</b> '), 
                                                                 reply_markup=await IBK.period_prolong())
@@ -541,22 +536,18 @@ class ProxyClient():
         await state.update_data(period=period)
         proxy = await self.db_manager.get_proxy(proxy_id=proxy_id)
         res = await self.proxy6.get_price(api_key=self.api_key, count=1, period=period, version=(6 if proxy.category == 'ipv6' else 4))
+        await state.update_data(balance=float(res['balance']))
+        await state.update_data(price=float(res['price']))
 
-        if float(res['price']) > float(res['balance']):
-            await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
-            await self.bot.send_message(chat_id=7431078179, text=f'Юзер {call.from_user.id} не смог осуществить платеж на {res['price'] * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс минимум на {res['price']}')
-            return
-        
-        await state.update_data(price=res['price'])
         if proxy.category == 'ipv6':
-            country_name = next((k for k, v in ipv6.items() if v == proxy.country), None)
+            country_name = next((k for k, v in self.ipv6.items() if v == proxy.country), None)
         else:
-            country_name = next((k for k, v in ipv4.items() if v == proxy.country), None)
+            country_name = next((k for k, v in self.ipv4.items() if v == proxy.country), None)
         
         
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
-                                    caption=f"------------------------💲 <b>Цена {(res['price'] * self.x_price):.2f}$</b>------------------------\n\n"
+                                    caption=f"➖➖➖💲 <b>Цена {(res['price'] * self.x_price):.2f}$</b>➖➖➖\n\n"
                                     f"<b>Прокси для продления:</b>\n"
                                     f"🌐 <b>IP:</b> <code>{proxy.ip}</code>\n"
                                     f"👤 <b>Логин:</b> <code>{proxy.login}</code>\n"
@@ -574,10 +565,17 @@ class ProxyClient():
         proxy_id = data.get('proxy_id')
         price = data.get('price')
         period = data.get('period')
+        admin_balance = data.get('balance')
         try:
             user = await self.db_manager.get_user(id=call.from_user.id)
             track_number = str(uuid.uuid4())[:8]
             logger.info(f"[{track_number}] Начало продления (user={call.from_user.id}, proxy_id={proxy_id}, period={period})")
+
+            if admin_balance < price:
+                await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
+                await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price}')
+                return
+            
             if price > user.balance:
                 logger.warning(f"[{track_number}] Недостаточно средств (нужно={price * self.x_price}, баланс={user.balance * self.x_price})")
                 await call.message.answer('Недостаточно средств ❌\n'
@@ -592,7 +590,7 @@ class ProxyClient():
 
             await self.db_manager.update_user(id=call.from_user.id, balance=((price * self.x_price) * -1))
             logger.info(f"[{track_number}] Списано {price * self.x_price} с баланса user={call.from_user.id}")
-            animation = await self.send_media('catalogue.gif', self.catalogue_id)
+            animation = await get_media('catalog')
             await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                     caption=f'Прокси продлен на {period} дней ✅\n⏳ Новый срок прокси: {result['list'][str(proxy_id)]['date_end']}'), 
                                     reply_markup=await IBK.back_on_main_page())

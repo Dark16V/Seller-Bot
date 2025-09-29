@@ -5,18 +5,17 @@ from aiogram import F
 from keyboards import IBK
 from keyboards.callbackdata import *
 
+from utils.utils import get_media
+
 import os
 
 
 
 
 class InstructionsClient():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
 
 
     async def reg_handler(self):
@@ -27,20 +26,11 @@ class InstructionsClient():
         self.dp.callback_query(F.data == 'con_andr')(self.con_andr)
         self.dp.callback_query(F.data == 'winda')(self.instr_win)
 
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation 
 
 
     async def instr(self, call: CallbackQuery):
         await call.answer()
-        animation = await self.send_media('catalogur.gif', self.catalogue_id)
-
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption=f"Выберите платформу: "),
                                             reply_markup=await IBK.select_type_instr())

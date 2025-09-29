@@ -1,5 +1,4 @@
 import aiohttp
-import asyncio
 from dotenv import load_dotenv
 import os
 
@@ -52,22 +51,16 @@ class PS:
         return {"error": "Страна или тип прокси не найдены"}
     
 
-    import aiohttp
-
-    import aiohttp
-
     async def download_proxy(self, order_id: int) -> list[dict]:
         format_type = 'login:password@ip:port'
         """Достаем прокси по айди заказа и возвращаем их в виде списка словарей"""
         url = f"{self.base_url}/order/{order_id}/download/{format_type}"
 
         async with aiohttp.ClientSession() as session:
-            # Получаем ссылку на файл с прокси
             async with session.get(url, headers=self.headers) as resp:
                 resp.raise_for_status()
                 data = await resp.json()
             
-            # Скачиваем прокси по ссылке
             async with session.get(data['url']) as resp:
                 resp.raise_for_status()
                 text = await resp.text()
@@ -88,29 +81,19 @@ class PS:
                     "port": port
                 })
             except ValueError:
-                # Если строка не соответствует формату login:password@ip:port — пропускаем
                 continue
 
         return proxies
+    
+    async def get_balance(self):
+        url = f"{self.base_url}/me"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=self.headers) as resp:
+                resp.raise_for_status()
+                data = await resp.json()
+                return int(data['user']['balance'])
 
 
-
-from datetime import datetime, timedelta
-
-            
-
-async def main():
-    ps = PS()
-
-    date_start = datetime.now()
-    print(date_start)
-    # допустим, после покупки вернулся order_id = 123
-    result = await ps.download_proxy(1526)
-    print(result)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
 
 
 

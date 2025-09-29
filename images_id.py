@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from aiogram import F
 
 # Токен бота
-API_TOKEN = "8452174279:AAF9Yh3nsn0Y71Rg2Rvj3FeqISP34YTmxrU"
+API_TOKEN = "8375687840:AAGYL4HcxkVP2HYTlz3sMjh6g8YafJQslgM"
 
 # Создаём бота и диспетчер
 bot = Bot(token=API_TOKEN)

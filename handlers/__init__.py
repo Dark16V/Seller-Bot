@@ -2,14 +2,13 @@
 from .admin import Admin
 from .payments import Payment
 from .user import user_modules
-from config import bot
 
 
-async def reg_handlers(dp):
-    admin = Admin(dp, bot=bot)
-    payment = Payment(dp=dp, bot=bot)
+async def reg_handlers(config):
+    admin = Admin(config=config)
+    payment = Payment(config=config)
     for module in user_modules:
-        client = module(dp=dp, bot=bot)
+        client = module(config=config)
         await client.reg_handler()
 
 

@@ -9,6 +9,7 @@ from db import get_db, async_session
 from models.order import Order
 
 from utils.loguru import logger
+from utils.utils import get_media
 
 import os
 import uuid
@@ -19,12 +20,9 @@ from services import DbManager
 
 
 class VPNClient():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.db_manager = DbManager(async_session)
 
 
@@ -35,20 +33,10 @@ class VPNClient():
         self.dp.callback_query(CallbackDataVPN.filter(F.action == 'pay_vpn_order'))(self.pay_vpn_order)
 
 
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation 
-
-
     async def watch_vpn(self, call: CallbackQuery):
         await call.answer()
         
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         text_markdown = """🛸 *VPN это ваша безопасность — а значит наша забота.*
 
 ℹ️ *Мы предоставляем:*
@@ -65,7 +53,7 @@ class VPNClient():
 ```
 ➖ Оплачиваете счет на сумму эквивалентной количества VPN ключей
 ➖ Пересылаете счет администрации по нажатию на кнопку
-➖ Получаете ваш уникальный VPN\-ключ, и используете его по инструкции из раздела
+➖ Получаете ваш уникальный VPN-ключ, и используете его по инструкции из раздела
 ```"""
 
         await call.message.edit_media(
@@ -80,7 +68,7 @@ class VPNClient():
     async def choose_amount_vpn(self, call: CallbackQuery):
         await call.answer()
 
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption="🎲 <i>Выбери количество VPN:</i>"), 
                                             reply_markup=await IBK.choose_amount_vpn())
@@ -93,7 +81,7 @@ class VPNClient():
         await call.answer()
         amount = callback_data.amount
 
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption=f"➖➖➖📝 <b>Ваш заказ:</b>➖➖➖\n\n🛡 <b>Товар:</b> <b>VPN</b>\n⚡️ <b>Количество:</b> <code>{amount}</code>\n💲 <b>К оплате:</b> <code>{amount * 2}$</code>"), 
                                             reply_markup=await IBK.pay_vpn_order(amount=amount))
@@ -102,7 +90,6 @@ class VPNClient():
         
     async def pay_vpn_order(self, call: CallbackQuery, callback_data: CallbackDataVPN):
         await call.answer()
-
         track_number = str(uuid.uuid4())[:8]
 
         logger.info(f"[{track_number}] Начало обработки заказа (user={call.from_user.id}, category=VPN)")
@@ -121,7 +108,7 @@ class VPNClient():
             try:
                 user = await self.db_manager.get_user(id=call.from_user.id)
                 if user.balance < amount * 2:
-                    animation = await self.send_media('catalogue.gif', self.catalogue_id)
+                    animation = await get_media('catalog')
                     await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="У вас не достаточно средств ❌"), reply_markup=await IBK.back_on_main_page())
                     return
                 

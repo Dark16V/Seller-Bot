@@ -9,12 +9,9 @@ from services import DbManager
 
 
 class ServerClient():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.db_manager = DbManager(async_session)
 
 

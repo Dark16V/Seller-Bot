@@ -1,5 +1,4 @@
-from aiogram.types import CallbackQuery, FSInputFile, Message, InputMediaAnimation
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.types import CallbackQuery, Message, InputMediaAnimation
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
 from aiogram import F
@@ -10,12 +9,13 @@ from keyboards import IBK
 from keyboards.callbackdata import *
 
 from utils.state.state import PaymentState
+from utils.utils import get_media
+
 from services import DbManager
 
 from dotenv import load_dotenv
 
 from db import async_session
-
 
 import os
 import asyncio
@@ -26,13 +26,11 @@ from datetime import datetime, timedelta
 load_dotenv()
 
 class Payment:
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.db_manger = DbManager(async_session)
         self.crypto = AioCryptoPay(token=os.getenv('CRYPTO_TOKEN'), network=Networks.MAIN_NET)
-        self.deposit_id = 'CgACAgIAAxkBAAIH7GjRo64029Jo4K1qJoTEqPsysskGAAJsfwACf0UYSjaww4363VsiNgQ'
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
 
 
     async def reg_handler(self):
@@ -55,29 +53,19 @@ class Payment:
                     return round(amount / rate.rate, 4)
         
         return None
-
-
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation 
         
 
     async def inc_balance_callback(self, callback: CallbackQuery):
         await callback.answer()
 
-        animation = await self.send_media('deposite.gif', self.deposit_id)
+        animation = await get_media('deposite')
         await callback.message.edit_media(media=InputMediaAnimation(media=animation, caption="💰 <b>Выбери сумму пополнения:</b>"), reply_markup=await IBK.prices_inc())
 
 
     async def choose_num(self, call: CallbackQuery, state: FSMContext):
         await call.answer(' ')
 
-        animation = await self.send_media('deposite.gif', self.deposit_id)
+        animation = await get_media('deposite')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="<code>💳 Отправьте сумму пополнения:</code>"))
         await state.set_state(PaymentState.AMOUNT)
 
@@ -101,14 +89,14 @@ class Payment:
         amount = callback_data.amount
 
         await state.update_data(amount=amount)
-        animation = await self.send_media('deposite.gif', self.deposit_id)
+        animation = await get_media('deposite')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="💳<b>Выбери способ оплаты:</b>"), reply_markup=await IBK.methods(amount))
         await state.set_state(PaymentState.WALLET)
 
 
     async def cryptobot_payment(self, call: CallbackQuery, state: FSMContext):
         await call.answer()
-        animation = await self.send_media('deposite.gif', self.deposit_id)
+        animation = await get_media('deposite')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="💲<b>Выбери валюту:</b>"), reply_markup=await IBK.choose_currency())
         await state.set_state(PaymentState.COIN)
 
@@ -183,5 +171,5 @@ class Payment:
     async def disable_pay(self, call: CallbackQuery):
         await call.answer()
         await call.message.delete()
-        animation = await self.send_media('menu.gif', self.menu_id)
+        animation = await get_media('menu')
         await call.message.answer_animation(animation=animation, caption="☁️ <b>ГЛАВНОЕ МЕНЮ</b>", reply_markup=await IBK.menu(user_id=call.from_user.id))

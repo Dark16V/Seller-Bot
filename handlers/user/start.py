@@ -1,4 +1,4 @@
-from aiogram.types import Message, CallbackQuery, FSInputFile, InputMediaAnimation
+from aiogram.types import Message, CallbackQuery, FSInputFile, InputMediaAnimation, BufferedInputFile
 from aiogram.filters import CommandStart
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.fsm.context import FSMContext
@@ -13,26 +13,16 @@ import os
 
 from services import DbManager
 
+from utils.utils import get_media
+
 
 
 class StartMenu():
-    def __init__(self, dp, bot):
-        self.dp = dp
-        self.bot = bot
-        self.menu_id = 'CgACAgIAAxkBAAIH6GjRo2k_oLP65EprZiB1pdDQOJaaAAJvfwACf0UYStj_a-he8dkwNgQ'
-        self.catalogue_id = 'CgACAgIAAxkBAAIH6mjRo4ma7X3Y24IjssLWagpGTWWoAAJufwACf0UYStlfz2QPcZf4NgQ'
-        self.profile_id = 'CgACAgIAAxkBAAIH5WjRoqbrAejuu_HCvqVNUIU8buRHAAJwfwACf0UYSl2nBRkiLySpNgQ'
+    def __init__(self, config):
+        self.dp = config.dp
+        self.bot = config.bot
         self.db_manager = DbManager(async_session)
 
-
-    async def send_media(self, file_name: str, file_id: str):
-        animation = file_id
-        try:
-            await self.bot.get_file(animation)
-            return animation
-        except TelegramBadRequest:
-            animation = FSInputFile(os.path.join("media", file_name))
-            return animation
 
     async def reg_handler(self):
         self.dp.message(CommandStart())(self.send_welcome)
@@ -44,19 +34,23 @@ class StartMenu():
 
 
     async def send_welcome(self, message: Message, new_user = False, user_id = None):
-        animation = await self.send_media('menu.gif', self.menu_id)
+        animation = await get_media('menu')
         await message.delete()
         uid = user_id if user_id else message.from_user.id
 
         if new_user == True:
-            msg = await message.answer("<b>☁️ Добро пожаловать в ProxyCloud!</b>\n\n"
-                            "<b>🛩️ У нас представлены популярные ресурсы для безопасности Premium качества, и по самой низкой цене</b>\n\n"
-                            "<b>ℹ️ Наши резервные ссылки:</b>\n"
-                            "<b>— codehousegroup.t.me</b>\n"
-                            "<b>— codehousech.com</b>\n"
-                            "<b>— proxycloudch.t.me</b>\n\n"
-                            " ➖➖➖➖➖\n\n"
-                            "<b>↪️ Начни прямо сейчас, выбрав интересующий раздел в меню!</b>")
+            msg = await message.answer("""<b>☁️ Добро пожаловать в ProxyCloud!</b>
+                                       
+                            <b>📂У нас представлены популярные ресурсы для безопасности Premium качества, и по самой низкой цене</b>
+                                       
+                            <b>ℹ️ Наши резервные ссылки:</b>
+                            <b>— @proxycloudch | Инфо канал</b>
+                            <b>— @codehousegroup | Сообщество</b>
+                            <b>— codehousech.com | Сайт</b>
+                                       
+                             ➖➖➖➖➖
+                                       
+                            "<b>↪️ Начни прямо сейчас, выбрав интересующий раздел в меню!</b>""")
             try:
                 await self.bot.unpin_chat_message(chat_id=message.chat.id)
             except TelegramBadRequest:
@@ -78,21 +72,21 @@ class StartMenu():
         await call.answer(' ')
         await state.clear()
 
-        animation = await self.send_media('menu.gif', self.menu_id)
+        animation = await get_media('menu')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="<b>☁️ ГЛАВНОЕ МЕНЮ</b>"), reply_markup=await IBK.menu(call.from_user.id))
 
 
 
     async def select_product(self, call: CallbackQuery):
         await call.answer()
-        animation = await self.send_media('catalogue.gif', self.catalogue_id)
+        animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, caption="<b>⚡️Выберите товар</b>"), reply_markup=await IBK.categories_products())
 
         
 
     async def help(self, call: CallbackQuery):
         await call.answer()
-        animation = await self.send_media('profile.gif', self.profile_id)
+        animation = await get_media('profile')
         text = f'Здравствуйте, мой айди аккаунта id{call.from_user.id}. Хочу обратиться по вопросу..'
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption="❓ <b>По всем вопросам:</b>"),
@@ -102,7 +96,7 @@ class StartMenu():
     async def profile_callback(self, call: CallbackQuery, user):
         await call.answer(' ')
 
-        animation = await self.send_media('profile.gif', self.profile_id)
+        animation = await get_media('profile')
 
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
                                             caption=f"*🪐Ваш ID:* `{user.telegram_id}`\n*💲Ваш баланс:* `{user.balance:.2f} $`", 

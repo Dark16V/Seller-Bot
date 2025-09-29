@@ -30,10 +30,10 @@ import io
 
 
 class Admin():
-    def __init__(self, dp, bot):
-        self.dp = dp
+    def __init__(self, config):
+        self.dp = config.dp
         self.db_manager = DbManager(async_session)
-        self.bot = bot
+        self.bot = config.bot
 
     async def reg_handler(self):
         self.dp.callback_query(F.data == 'admin_panel')(self.admin_panel)

@@ -21,10 +21,10 @@ class CheckUserMiddleware(BaseMiddleware):
     ):
         telegram_id = event.from_user.id
 
-        # member = await event.bot.get_chat_member(chat_id='@ProxyCloudCH', user_id=telegram_id)
-        # if not member.status in ("member", "administrator", "creator"):
-        #     await event.bot.send_message(chat_id=telegram_id, text='<b>ℹ️ Для использования бота подпишитесь на наш информационный канал ⬇️</b>', reply_markup=await IBK.sub())
-        #     return
+        member = await event.bot.get_chat_member(chat_id='@ProxyCloudCH', user_id=telegram_id)
+        if not member.status in ("member", "administrator", "creator"):
+            await event.bot.send_message(chat_id=telegram_id, text='<b>ℹ️ Для использования бота подпишитесь на наш информационный канал ⬇️</b>', reply_markup=await IBK.sub())
+            return
 
         async with self.session_maker() as session:
             result = await session.execute(

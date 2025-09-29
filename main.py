@@ -1,5 +1,5 @@
 import asyncio
-from config import bot, dp
+from config import config
 from utils.loguru import setup_logger, logger
 from db import engine, Base
 from handlers import reg_handlers
@@ -10,10 +10,10 @@ async def main():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-    await reg_handlers(dp)
+    await reg_handlers(config=config)
 
-    await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot)
+    await config.bot.delete_webhook(drop_pending_updates=True)
+    await config.dp.start_polling(config.bot)
 
     
     
