@@ -8,7 +8,7 @@ from aiocryptopay import AioCryptoPay, Networks
 from keyboards import IBK
 from keyboards.callbackdata import *
 
-from utils.state.state import PaymentState
+from utils.state.state import PaymentState, UsePromo
 from utils.utils import get_media
 
 from services import DbManager
@@ -36,11 +36,14 @@ class Payment:
     async def reg_handler(self):
         self.dp.callback_query(F.data == 'inc_balance')(self.inc_balance_callback)
         self.dp.callback_query(F.data == 'my_num')(self.choose_num)
-        self.dp.callback_query(F.data == 'disable_pay')(self.disable_pay)
         self.dp.message(StateFilter(PaymentState.AMOUNT), F.text)(self.choose_payment_m)
         self.dp.callback_query(CallbackDataAmount.filter(F.action == 'amount'))(self.choose_payment_c)
         self.dp.callback_query(F.data.startswith("cryptobot_"), StateFilter(PaymentState.WALLET))(self.cryptobot_payment)
         self.dp.callback_query(CallbackDataCurrency.filter(F.action == 'get_currency'), StateFilter(PaymentState.COIN))(self.raise_crypt_pay)
+        self.dp.callback_query(F.data == 'disable_pay', StateFilter(PaymentState.PAY_WAIT))(self.disable_pay)
+        self.dp.callback_query(F.data == 'use_promo')(self.write_code)
+        self.dp.message(StateFilter(UsePromo.code), F.text)(self.use_promo)
+
 
     
     async def calculate_currency_amount(self, wallet: str, amount: Union[int, float]) -> Union[int, float] | None:
@@ -105,10 +108,22 @@ class Payment:
         await call.answer()
         await call.message.delete()
         data = await state.get_data()
-
+        code = data.get('promocode')
         amount = data['amount']
+        result = await self.db_manger.get_promo_users(user_id=call.from_user.id)
+        promocode = result[0] if result[0] else None
+        code = result[1].code if result[1] else None
+        if promocode:
+            if promocode.exspired_at and promocode.exspired_at < datetime.utcnow():
+                await call.message.answer(f'<b>Промокод {code} истёк!\nПоэтому прибавок к пополнению не будет примененен </b>‼️')
+                promocode = None
+            else:
+                await call.message.answer(f'<b>Будет применён промокод на +{promocode.discount}% к пополнению баланса!\n{amount}$ -> {round(amount * (1 + (promocode.discount / 100)), 2)}</b>$ ✅')
+                await state.update_data(promocode=promocode.code_id)
+        
         currency = callback_data.currency
         calculate_amount = await self.calculate_currency_amount(wallet=currency, amount=amount)
+        
 
         if calculate_amount:
             invoice = await self.crypto.create_invoice(amount=calculate_amount, asset=currency, description="Пополнение баланса")
@@ -118,9 +133,13 @@ class Payment:
                 "➖➖➖\n"
                 "<code>↪️ Перейдите по ссылке чтобы оплатить счет:</code>", reply_markup=await IBK.pay_crypto(url=invoice.bot_invoice_url))
 
-            await state.update_data(invoice_id=invoice.invoice_id, msg_id=msg.message_id, chat_id=call.from_user.id)
+            task = asyncio.create_task(self._process_check_payment_user(state))
+            await state.set_state(PaymentState.PAY_WAIT)
 
-            asyncio.create_task(self._process_check_payment_user(state))
+            calculate_amount = round(calculate_amount * (1 + (promocode.discount / 100)), 2) if promocode else calculate_amount
+            await state.update_data(invoice_id=invoice.invoice_id, msg_id=msg.message_id, chat_id=call.from_user.id, task=task, amount=amount)
+
+            
 
 
     async def _process_check_payment_user(self, state: FSMContext):
@@ -129,7 +148,7 @@ class Payment:
         invoice_id = data['invoice_id']
         chat_id = data['chat_id']
         msg_id = data['msg_id']
-
+        promo_id = data['promocode'] if 'promocode' in data else None
         end_time = datetime.now() + timedelta(minutes=15)
 
         while datetime.now() < end_time:
@@ -140,6 +159,9 @@ class Payment:
 
                 if status == "paid":
                     await self.db_manger.update_user(id=chat_id, balance=amount_inc)
+                    if promo_id:
+                        await self.db_manger.deactivate_promo_user(code_id=promo_id)
+
 
                     await self.bot.edit_message_text(
                         chat_id=chat_id,
@@ -168,8 +190,44 @@ class Payment:
         await state.clear()
 
 
-    async def disable_pay(self, call: CallbackQuery):
+    async def disable_pay(self, call: CallbackQuery, state: FSMContext):
         await call.answer()
         await call.message.delete()
+        data = await state.get_data()
+        task = data.get('task')
+        if task:
+            task.cancel()
+        await state.clear()
         animation = await get_media('menu')
         await call.message.answer_animation(animation=animation, caption="☁️ <b>ГЛАВНОЕ МЕНЮ</b>", reply_markup=await IBK.menu(user_id=call.from_user.id))
+
+    async def write_code(self, call: CallbackQuery, state: FSMContext):
+        await call.answer()
+        text = """
+❔Любой <b>«абуз»</b> системных промокодов <b>нарушает</b> правила сообщества, и ведет за собой <b>перманентую блокировку.</b>
+↪️ Введите промокод без <b>«ковычек»</b>, например [FREE25]
+"""
+        await call.message.answer(text)
+        await state.set_state(UsePromo.code)
+
+    async def use_promo(self, m: Message, state: FSMContext):
+        code = m.text.strip()
+        promocode = await self.db_manger.get_promocode(code=code)
+
+        if not promocode:
+            return await m.answer('<i>Неправильно введен промокод </i>‼️')
+
+        if promocode.exspired_at and promocode.exspired_at < datetime.utcnow():
+            await self.db_manger.del_all(code=code)
+            return await m.answer('Промокод истёк ‼️')
+
+        if promocode.usage_limit and promocode.used_count >= promocode.usage_limit:
+            return await m.answer('Промокод достиг лимита использования ‼️')
+
+        used_promo = await self.db_manger.get_promo_users(user_id=m.from_user.id)
+        if used_promo[0]:
+            return await m.answer('Вы уже использовали промокод ранее ‼️')
+
+        await self.db_manger.use_promocode(user_id=m.from_user.id, promocode=promocode)
+        await m.answer(f'Промокод {promocode.code} успешно применён! Вы получите +{promocode.discount}% при следующем пополнении баланса.', reply_markup=await IBK.back_on_main_page())
+        await state.clear()

@@ -20,6 +20,9 @@ class PayIBK():
                     InlineKeyboardButton(text='Другая сумма', callback_data='my_num')
                 ],
                 [
+                    InlineKeyboardButton(text='Активировать промокод', callback_data='use_promo')
+                ],
+                [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='back_to_menu')
                 ]
             ]

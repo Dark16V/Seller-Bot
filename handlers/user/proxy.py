@@ -242,8 +242,6 @@ class ProxyClient():
 
 
     
-         
-
 
     async def create_order_proces(self, category: str, country: str, type: str, requested_count: int, user: User, state: FSMContext, m: Message | CallbackQuery, period: int, tariff: str):
         if isinstance(m, CallbackQuery):
@@ -266,6 +264,7 @@ class ProxyClient():
         else:
             version = 6 if category == 'ipv6' else 4
             result = await self.proxy6.get_price(self.api_key, count=requested_count, period=period, version=version)
+            price = await self.calculate_rub_to_usdt(result['price'])
             await state.update_data(balance=float(result['balance']))
             try:
                 await state.update_data(price=result['price'])
@@ -274,13 +273,13 @@ class ProxyClient():
                     country_name = next((k for k, v in self.ipv6.items() if v == country), None)
                 else:
                     country_name = next((k for k, v in self.ipv4.items() if v == country), None)
-                animation = await self.send_media('catalogue.gif', self.catalogue_id)
+                animation = await get_media('catalog')
                 await m.edit_media(media=InputMediaAnimation(media=animation, caption="➖➖➖📝 <b>Ваш заказ:</b>➖➖➖\n\n"
                             f"📂 <b>Категория:</b> <code>{'IPv6' if category == 'ipv6' else 'IPv4'}</code>\n"
                             f"🏳️ <b>Страна:</b> <code>{country_name}</code>\n"
                             f"⚡️ <b>Количество:</b> <code>{requested_count}</code>\n"
                             f"⏳ <b>Срок:</b>  <code>{period} дней </code>\n"
-                            f"💲 <b>Общая сумма:</b> <code>{(result['price'] * self.x_price):.2f}$</code>"), reply_markup=await IBK.confirm_order())
+                            f"💲 <b>Общая сумма:</b> <code>{(price * self.x_price):.2f}$</code>"), reply_markup=await IBK.confirm_order())
 
             except Exception as e:
                 print(e)
@@ -291,6 +290,7 @@ class ProxyClient():
 
         requested_count = data.get("requested_count")
         price = data.get("price")
+        price_usdt = await self.calculate_rub_to_usdt(price)
         category = data.get("category")
         country = data.get("country")
         type = data.get('type')
@@ -303,11 +303,11 @@ class ProxyClient():
         async for session in get_db():
             user = await self.db_manager.get_user(id=call.from_user.id)
 
-            if user.balance < (price * self.x_price):
+            if user.balance < (price_usdt * self.x_price):
                 await call.answer()
                 await call.message.delete()
                 await call.message.answer('Недостаточно средств ❌\n'
-                                f'💲 *Цена заказа:* `{(price * self.x_price):.2f} $`\n'
+                                f'💲 *Цена заказа:* `{(price_usdt * self.x_price):.2f} $`\n'
                                 f'💰 *Ваш баланс:* `{user.balance:.2f}` $', parse_mode="Markdown", reply_markup=await IBK.need_inc_balance())
                 return
 
@@ -320,11 +320,11 @@ class ProxyClient():
                     await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price}')
                     return
             else:
-                price = await self.calculate_rub_to_usdt(price)
                 if admin_balance < price:
                     await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
                     await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте ProxySoxy. Пополните свой баланс в ProxySoxy минимум на {price}')
                     return
+
 
 
             await call.answer()
@@ -339,15 +339,15 @@ class ProxyClient():
 
             try:
                 
-                await self.db_manager.update_user(id=user.telegram_id, balance=((price * self.x_price) * -1))
+                await self.db_manager.update_user(id=user.telegram_id, balance=((price_usdt * self.x_price) * -1))
 
-                steps += f"|Списано {price * self.x_price}"
+                steps += f"|Списано {price_usdt * self.x_price}"
 
                 order.status = "processing"
                 order.steps = steps
                 session.add(order)
                 await session.commit()
-                logger.info(f"[{track_number}] У юзера (user={call.from_user.id}) списано {price * self.x_price}$")
+                logger.info(f"[{track_number}] У юзера (user={call.from_user.id}) списано {price_usdt * self.x_price}$")
 
 
                 if tariff != 'cheap':
@@ -547,7 +547,7 @@ class ProxyClient():
         
         animation = await get_media('catalog')
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
-                                    caption=f"➖➖➖💲 <b>Цена {(res['price'] * self.x_price):.2f}$</b>➖➖➖\n\n"
+                                    caption=f"➖➖➖💲 <b>Цена {(await self.calculate_rub_to_usdt(res['price']) * self.x_price):.2f}$</b>➖➖➖\n\n"
                                     f"<b>Прокси для продления:</b>\n"
                                     f"🌐 <b>IP:</b> <code>{proxy.ip}</code>\n"
                                     f"👤 <b>Логин:</b> <code>{proxy.login}</code>\n"
@@ -564,6 +564,7 @@ class ProxyClient():
         data = await state.get_data()
         proxy_id = data.get('proxy_id')
         price = data.get('price')
+        price_usdt = await self.calculate_rub_to_usdt(price)
         period = data.get('period')
         admin_balance = data.get('balance')
         try:
@@ -573,13 +574,13 @@ class ProxyClient():
 
             if admin_balance < price:
                 await call.answer('🔄 Повторите позже | Произошла ошибка оформления заказа | Обратитесь в поддержку', show_alert=True)
-                await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price}')
+                await self.bot.send_message(chat_id=os.getenv('MAIN_ADMIN'), text=f'Юзер {call.from_user.id} не смог осуществить платеж на {price_usdt * self.x_price}$ из за недостатка средств на вашем аккаунте proxy6.net. Пополните свой баланс в proxy6.net минимум на {price} рублей')
                 return
             
-            if price > user.balance:
-                logger.warning(f"[{track_number}] Недостаточно средств (нужно={price * self.x_price}, баланс={user.balance * self.x_price})")
+            if price_usdt > user.balance:
+                logger.warning(f"[{track_number}] Недостаточно средств (нужно={price_usdt * self.x_price}, баланс={user.balance})")
                 await call.message.answer('Недостаточно средств ❌\n'
-                                    f'💲 *Цена заказа:* `{(price * self.x_price):.2f}` $\n'
+                                    f'💲 *Цена заказа:* `{(price_usdt * self.x_price):.2f}` $\n'
                                     f'💰 *Ваш баланс:* `{user.balance}` $', parse_mode="Markdown", reply_markup=await IBK.need_inc_balance())
                 await state.clear()
                 return

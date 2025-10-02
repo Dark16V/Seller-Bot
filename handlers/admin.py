@@ -9,7 +9,7 @@ from sqlalchemy import func
 from keyboards import IBK
 from keyboards.callbackdata import CallbackDataUser
 
-from utils.state.state import Mailing, UsersState
+from utils.state.state import Mailing, UsersState, Promo
 from utils.filters import IsAdmin
 
 from aiogram.types import BufferedInputFile
@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 
 from db import get_db, async_session
 from models.order import Order
+
+from datetime import datetime, timedelta
 
 from services import DbManager
 
@@ -50,6 +52,11 @@ class Admin():
         self.dp.message(StateFilter(UsersState.id), F.text)(self.get_user_ip)
         self.dp.callback_query(CallbackDataUser.filter(F.action == 'get_user'))(self.get_user_orders)
         self.dp.callback_query(F.data == 'admins_comm')(self.admins_commands)
+        self.dp.callback_query(F.data == 'add_promo')(self.add_promo)
+        self.dp.message(StateFilter(Promo.code), F.text)(self.set_code)
+        self.dp.message(StateFilter(Promo.discount), F.text)(self.set_discount)
+        self.dp.message(StateFilter(Promo.period), F.text)(self.set_period)
+        self.dp.message(StateFilter(Promo.usage_limit), F.text)(self.set_usage_limit)
 
 
     async def admin_panel(self, callback: CallbackQuery):
@@ -267,3 +274,48 @@ class Admin():
 
 
 
+    async def add_promo(self, call: CallbackQuery, state: FSMContext):
+        await call.answer(' ')
+        await call.message.answer('Введи промокод')
+        await state.set_state(Promo.code)
+
+    
+    async def set_code(self, m: Message, state: FSMContext):
+        await state.update_data(code=m.text)
+        await m.answer('Введи процент добавления (число от 1 до 100)')
+        await state.set_state(Promo.discount)
+
+    async def set_discount(self, m: Message, state: FSMContext):
+        if not m.text.isdigit() or not (1 <= int(m.text) <= 100):
+            await m.answer('Процент должен быть числом от 1 до 100.')
+            return
+        await state.update_data(discount=int(m.text))
+        await m.answer('Введи срок действия промокода в часах (число).')
+        await state.set_state(Promo.period)
+
+    async def set_period(self, m: Message, state: FSMContext):
+        if not m.text.isdigit() or int(m.text) <= 0:
+            await m.answer('Период должен быть положительным числом.')
+            return
+        await state.update_data(period=int(m.text))
+        await m.answer('Введи лимит использования промокода (число).')
+        await state.set_state(Promo.usage_limit)
+
+    async def set_usage_limit(self, m: Message, state: FSMContext):
+        if not m.text.isdigit() or int(m.text) <= 0:
+            await m.answer('Лимит использования должен быть положительным числом.')
+            return
+        await state.update_data(usage_limit=int(m.text))
+
+        data = await state.get_data()
+        code = data['code']
+        discount = data['discount']
+        period = data['period']
+        usage_limit = data['usage_limit']
+
+        exspired_at = datetime.utcnow() + timedelta(hours=period)
+
+        new_promo = await self.db_manager.create_promocode(code=code, discount=discount, exspired_at=exspired_at, usage_limit=usage_limit)
+
+        await m.answer(f'Промокод создан:\nКод: `{new_promo.code}\n`Процент: `{new_promo.discount}%`\nДействует до: `{new_promo.exspired_at}`\nЛимит использования: `{new_promo.usage_limit}`', parse_mode='Markdown', reply_markup=await IBK.admin_panel_keyboard())
+        await state.clear()

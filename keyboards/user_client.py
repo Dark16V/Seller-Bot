@@ -97,14 +97,14 @@ class UserIBK():
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
-                    InlineKeyboardButton(text='Пополнить 💳', callback_data='inc_balance'),
-                    InlineKeyboardButton(text='Мои заказы 🛍️', callback_data='my_orders')
+                    InlineKeyboardButton(text='Пополнить 💲', callback_data='inc_balance'),
+                    InlineKeyboardButton(text='Мои заказы 🛒', callback_data='my_orders')
                 ],
                 [
-                    InlineKeyboardButton(text='Мои прокси 💼', callback_data='my_proxies')
+                    InlineKeyboardButton(text='Мои прокси 👜', callback_data='my_proxies')
                 ],
                 [
-                    InlineKeyboardButton(text='Тех Поддержка 🤝', callback_data='help')
+                    InlineKeyboardButton(text='Администрация 👤', callback_data='help')
                 ],
                 [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='back_to_menu')

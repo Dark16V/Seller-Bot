@@ -19,6 +19,9 @@ class AdminyIBK():
                     InlineKeyboardButton(text='Админские команды', callback_data='admins_comm')
                 ],
                 [
+                    InlineKeyboardButton(text='Создать промокод 💳', callback_data='add_promo')
+                ],
+                [
                     InlineKeyboardButton(text='⬅️ Назад', callback_data='back_to_menu')
                 ]])
         return admin_panel

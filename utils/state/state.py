@@ -38,4 +38,15 @@ class UsersState(StatesGroup):
 class Prolong(StatesGroup):
     proxy_id: int = State()
     period: int = State()
+
+
+class Promo(StatesGroup):
+    code: int = State()
+    discount: int = State()
+    period: int = State()
+    usage_limit: int = State()
+
+class UsePromo(StatesGroup):
+    code: int = State()
+
     
