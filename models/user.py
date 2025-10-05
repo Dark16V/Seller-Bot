@@ -8,6 +8,7 @@ class User(Base):
     __tablename__ = "users"
 
     telegram_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    referral_uid: Mapped[int] = mapped_column(BigInteger, nullable=True)
     balance: Mapped[float] = mapped_column(default=0.0)
     is_baned: Mapped[bool] = mapped_column(Boolean, default=False)
     reg_time: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

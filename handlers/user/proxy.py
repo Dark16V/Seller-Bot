@@ -372,10 +372,10 @@ class ProxyClient():
                             country_name = next((k for k, v in self.ipv4.items() if v == country), None)
                         date_start = (datetime.strptime(proxy_info['date'], "%Y-%m-%d %H:%M:%S")).strftime("%Y-%m-%d %H:%M")
                         date_end = (datetime.strptime(proxy_info['date_end'], "%Y-%m-%d %H:%M:%S")).strftime("%Y-%m-%d %H:%M")
-                        await call.message.answer(f'IP: {proxy_info['host']}\n'
-                                                f'Port: {proxy_info['port']}\n'
-                                                f'Login: {proxy_info['user']}\n'
-                                                f'Password: {proxy_info['pass']}\n'
+                        await call.message.answer(f'IP: {proxy_info["host"]}\n'
+                                                f'Port: {proxy_info["port"]}\n'
+                                                f'Login: {proxy_info["user"]}\n'
+                                                f'Password: {proxy_info["pass"]}\n'
                                                 f'Категория: {category} - {type}\n'
                                                 f'Страна: {country_name}\n'
                                                 f'Срок: {date_start} - {date_end}\n')
@@ -393,10 +393,10 @@ class ProxyClient():
                     date_start = datetime.now()
                     for p in proxies:
                         date_end = date_start + timedelta(days=30)
-                        await call.message.answer(f'IP: {p['ip']}\n'
-                                                    f'Port: {p['port']}\n'
-                                                    f'Login: {p['login']}\n'
-                                                    f'Password: {p['password']}\n'
+                        await call.message.answer(f'IP: {p["ip"]}\n'
+                                                    f'Port: {p["port"]}\n'
+                                                    f'Login: {p["login"]}\n'
+                                                    f'Password: {p["password"]}\n'
                                                     f'Категория: IPv4 - {type}\n'
                                                     f'Страна: {country}\n'
                                                     f'Срок: {datetime.now().date()} - {(datetime.now().date() + timedelta(days=30))}\n')
@@ -593,7 +593,7 @@ class ProxyClient():
             logger.info(f"[{track_number}] Списано {price * self.x_price} с баланса user={call.from_user.id}")
             animation = await get_media('catalog')
             await call.message.edit_media(media=InputMediaAnimation(media=animation, 
-                                    caption=f'Прокси продлен на {period} дней ✅\n⏳ Новый срок прокси: {result['list'][str(proxy_id)]['date_end']}'), 
+                                    caption=f'Прокси продлен на {period} дней ✅\n⏳ Новый срок прокси: {result["list"][str(proxy_id)]["date_end"]}'), 
                                     reply_markup=await IBK.back_on_main_page())
 
             await self.db_manager.update_p(proxy_id=proxy_id, date_end=result['list'][str(proxy_id)]['date_end'])

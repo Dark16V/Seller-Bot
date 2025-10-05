@@ -1,5 +1,5 @@
 from aiogram.types import Message, CallbackQuery, FSInputFile, InputMediaAnimation, BufferedInputFile
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, CommandObject
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.fsm.context import FSMContext
 from aiogram import F
@@ -97,8 +97,10 @@ class StartMenu():
         await call.answer(' ')
 
         animation = await get_media('profile')
+        ref_url = f'<code>https://t.me/{(await call.bot.get_me()).username}?start={call.from_user.id}</code>'
+        count_ref = await self.db_manager.get_user_count_ref(uid=call.from_user.id)
 
         await call.message.edit_media(media=InputMediaAnimation(media=animation, 
-                                            caption=f"*🪐Ваш ID:* `{user.telegram_id}`\n*💲Ваш баланс:* `{user.balance:.2f} $`", 
-                                            parse_mode="Markdown"),
+                                            caption=f"<b>🪐Ваш ID:</b> <code>{user.telegram_id}</code>\n<b>💲Ваш баланс:</b> <code>{user.balance:.2f} $</code>\n<b>👥Количество ваших рефералов: {count_ref}</b>\n<b>🔗Ваша реферальная ссылка\n{ref_url}</b>", 
+                                            parse_mode="HTML"),
                                             reply_markup=await IBK.profile_keyboard())

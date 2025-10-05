@@ -74,14 +74,13 @@ class Payment:
 
 
     async def choose_payment_m(self, m: Message, state: FSMContext):
-        if not m.text.isdigit():
-            return await m.answer("Нужно ввести именно число ‼️")
-            
-        amount = int(m.text)
+        try:
+            amount = float(m.text.replace(",", "."))
+        except: return await m.answer("Введите число!")
 
-        if amount < 1:
-            return await m.answer('Сумма не должна быть меньше <b>1</b>')
-            
+        if amount < float(1):
+            return await m.answer("<b>Неверный ввод ❕\nМинимальная сумма пополнения 1$</b>")
+
         await state.update_data(amount=amount)
         await m.answer("💳 <b>Выбери способ оплаты:</b>", reply_markup=await IBK.methods(amount))
         await state.set_state(PaymentState.WALLET)
@@ -158,9 +157,14 @@ class Payment:
                 status = invoice_info.status
 
                 if status == "paid":
-                    await self.db_manger.update_user(id=chat_id, balance=amount_inc)
+                    user = await self.db_manger.update_user(id=chat_id, balance=amount_inc)
                     if promo_id:
                         await self.db_manger.deactivate_promo_user(code_id=promo_id)
+                    
+                    if user.referral_uid:
+                        try:
+                            await self.bot.send_message(chat_id=user.referral_uid, text=f"<b>⚡️Ваш реферал принес вам: {round((amount_inc * 5) / 100, 2)}$</b>")
+                        except Exception as e: print(e)
 
 
                     await self.bot.edit_message_text(
@@ -205,7 +209,7 @@ class Payment:
         await call.answer()
         text = """
 ❔Любой <b>«абуз»</b> системных промокодов <b>нарушает</b> правила сообщества, и ведет за собой <b>перманентую блокировку.</b>
-↪️ Введите промокод без <b>«ковычек»</b>, например [FREE25]
+↪️ <b>Введите промокод</b> без <b>«ковычек»</b>, например [<code>FREE25</code>]
 """
         await call.message.answer(text)
         await state.set_state(UsePromo.code)
@@ -215,18 +219,18 @@ class Payment:
         promocode = await self.db_manger.get_promocode(code=code)
 
         if not promocode:
-            return await m.answer('<i>Неправильно введен промокод </i>‼️')
+            return await m.answer('<b>Неправильно введен промокод❕</b>')
 
         if promocode.exspired_at and promocode.exspired_at < datetime.utcnow():
             await self.db_manger.del_all(code=code)
-            return await m.answer('Промокод истёк ‼️')
+            return await m.answer('<b>Промокод истёк ❕</b>')
 
         if promocode.usage_limit and promocode.used_count >= promocode.usage_limit:
-            return await m.answer('Промокод достиг лимита использования ‼️')
+            return await m.answer('<b>Промокод достиг лимита использования ❕</b>')
 
         used_promo = await self.db_manger.get_promo_users(user_id=m.from_user.id)
         if used_promo[0]:
-            return await m.answer('Вы уже использовали промокод ранее ‼️')
+            return await m.answer('<b>Вы уже использовали промокод ранее ❕</b>')
 
         await self.db_manger.use_promocode(user_id=m.from_user.id, promocode=promocode)
         await m.answer(f'Промокод {promocode.code} успешно применён! Вы получите +{promocode.discount}% при следующем пополнении баланса.', reply_markup=await IBK.back_on_main_page())

@@ -1,37 +1,25 @@
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import BufferedInputFile
-from aiogram.filters import Command
-from aiogram import F
+from aiogram.filters import CommandStart, Command
 import asyncio
 
-TOKEN = "8375687840:AAGYL4HcxkVP2HYTlz3sMjh6g8YafJQslgM"
 
-bot = Bot(token=TOKEN)
+BOT_TOKEN = "8452174279:AAF9Yh3nsn0Y71Rg2Rvj3FeqISP34YTmxrU"
+
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-@dp.message(Command("photo"))
-async def send_photo(message: types.Message):
-    # Представим, что у тебя есть картинка в байтах
-    with open("media/menu_test.mp4", "rb") as f:
-        img_bytes = f.read()
+# При добавлении в группу — приветствие с ID
+@dp.message(CommandStart())
+async def start(message: types.Message):
+    await message.answer(f"👋 Привет! ID этого чата: `{message.chat.id}`", parse_mode="Markdown")
 
-    # Заворачиваем в BufferedInputFile
-    media = BufferedInputFile(img_bytes, filename="test.mp4")
-
-    # Отправляем как фото
-    await message.answer_animation(media, caption="Media из байтов 📸")
-
-@dp.message(Command("doc"))
-async def send_doc(message: types.Message):
-    # Пример с документом (PDF)
-    with open("test.pdf", "rb") as f:
-        pdf_bytes = f.read()
-
-    document = BufferedInputFile(pdf_bytes, filename="file.pdf")
-
-    await message.answer_document(document, caption="Документ из байтов 📑")
+# Команда /id — выводит ID текущего чата
+@dp.message(Command("id"))
+async def get_id(message: types.Message):
+    await message.answer(f"🆔 ID этого чата: `{message.chat.id}`", parse_mode="Markdown")
 
 async def main():
+    print("🤖 Бот запущен. Добавь его в группу и напиши /id")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
