@@ -1,8 +1,8 @@
 import asyncio
 from config import config
-from utils.loguru import setup_logger, logger
+from src.utils.loguru import setup_logger, logger
 from db import engine, Base, backup_task
-from handlers import reg_handlers
+from src.handlers import reg_handlers
 
 
 async def main():
